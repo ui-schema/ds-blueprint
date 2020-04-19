@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 12
+install:
+  - npm ci
+script:
+  - npm run build
+deploy:
+  - provider: script
+    cleanup: true
+    script: bash publish.sh
+    on:
+      tags: true
