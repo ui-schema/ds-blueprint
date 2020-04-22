@@ -1,11 +1,11 @@
 # UI-Schema: DS Blueprint
 
-[![Travis (.org) branch](https://img.shields.io/travis/ui-schema/ui-schema/master?style=flat-square)](https://travis-ci.org/ui-schema/ds-blueprint)
+[![Travis (.org) branch](https://img.shields.io/travis/ui-schema/ds-blueprint/master?style=flat-square)](https://travis-ci.org/ui-schema/ds-blueprint)
 [![react compatibility](https://img.shields.io/badge/React-%3E%3D16.8-success?style=flat-square&logo=react)](https://reactjs.org/)
 [![npm (scoped)](https://img.shields.io/npm/v/@ui-schema/ds-bootstrap?style=flat-square)](https://www.npmjs.com/package/@ui-schema/ds-blueprint)
 [![MIT license](https://img.shields.io/npm/l/@ui-schema/ds-bootstrap?style=flat-square)](https://github.com/ui-schema/ds-blueprint/blob/master/LICENSE)
 
-BlueprintJS binding to work with [@ui-schema/ui-schema](https://github.com/ui-schema/ui-schema), using native HTML.
+[BlueprintJS](https://blueprintjs.com/) binding to work with [@ui-schema/ui-schema](https://github.com/ui-schema/ui-schema). The grid uses [flexboxgrid](https://github.com/kristoferjoseph/flexboxgrid).
 
 >
 > ⚠️Work in progress!
@@ -21,17 +21,13 @@ BlueprintJS binding to work with [@ui-schema/ui-schema](https://github.com/ui-sc
 
 [![Chat on Spectrum](https://img.shields.io/badge/Chat%20on%20Spectrum-blue?labelColor=fff&logoColor=505050&color=7B16FF&style=for-the-badge&logo=spectrum)](https://spectrum.chat/ui-schema)
 
-> **todo: bootstrap demo**
-[![Fullscreen Demo](https://img.shields.io/badge/Fullscreen%20Demo-green?labelColor=fff&color=1e970c&style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACRUlEQVR4nO3aTYiNUQDG8Z/xWRSFBRZYYSGSZCdFiZ0sFSuTjbJUdqMslGIhlmI3shGRJnZYkQVWZjNZmPIRNfIxr8Xt1JivO/ed95zzXvf917N/nn/3drvnHBoaGhoaGjphIU7iJq7jYNY2iVmCIRST8hDbMvZKxllTx4f8whWsytYuAY/NLCBkFKe1vir/Hc+1FxDyGvvz1IxHJwJC7mJzjrIxKCOgwA9cxIr0laulrICQDziBBamLV8V8BYS8wN7E3SuhKgEFxnEL65MumCdVCgj5jvNYlnBHaWIICBnGsXRTyhFTQMgT7Eg1qFNSCCjwBzewJs2suZNKQMhnrf8fi1OMmwupBYS8xaEE+9qSS0DIfWyJvnIWcgso8BOXsTLy1mmpg4CQjziFvqiLJ1EnASEvsS/m6InUUUDIIDbGm96izgIKjGEAy3tVQMgIDvSygPBp2NrLAgpc7XUB93pdwKVeFvBVhJ/FbhHwBrurHt8NAj7hDBbFGF9nAb9xDatjDQ/UUcAQtsccPZE6CXiPo3HnTqUOAr7hHJZG3jotOQWMa71KWRd95SzkEvAMexLsa0tqASM4rkaXqakEjOGCiP/ry5JCwCA2JdrTMTEFvJLwbK8sMQSMol/i092yVCkgnO931bO6qgQ8kPmGpyzzFfAOh5O3rpCyAr6o2S1vWToVEO751+YoG4NOBDzFziwtI/JI++HDuuCtT1n6zTy8q157laUPd/w7fBy3sSFjr+Qc0TpzH8CuzF0aGhoaGhoayvEXCYka61umCF0AAAAASUVORK5CYII=)](https://ui-schema-build.elbakerino.repl.co)
-
-
 ---
 
 ## License
 
 This project is free software distributed under the **MIT License**.
 
-See: [LICENSE](https://github.com/ui-schema/ui-schema/blob/master/LICENSE).
+See: [LICENSE](https://github.com/ui-schema/ds-blueprint/blob/master/LICENSE).
 
 © 2020 bemit UG (haftungsbeschränkt)
 
