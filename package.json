@@ -40,7 +40,7 @@
     },
     "devDependencies": {
         "@blueprintjs/core": "^3.24.0",
-        "@ui-schema/ui-schema": "0.0.17",
+        "@ui-schema/ui-schema": "0.0.19",
         "flexboxgrid": "^6.3.1",
         "immutable": "^4.0.0-rc.12",
         "nwb": "0.23.x",
