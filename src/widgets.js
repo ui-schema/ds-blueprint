@@ -1,15 +1,19 @@
 import { widgetsBase } from "./widgetsBase";
 import { NumberRenderer, StringRenderer, TextRenderer } from "./Widgets/TextField";
+import { BoolRenderer } from "./Widgets/OptionsBoolean";
+import { OptionsRadio } from "./Widgets/OptionsRadio";
 
 const widgets = { ...widgetsBase };
 
 widgets.types = {
     string: StringRenderer,
-    number: NumberRenderer
+    number: NumberRenderer,
+    boolean: BoolRenderer,
 };
 
 widgets.custom = {
-    Text: TextRenderer
+    Text: TextRenderer,
+    OptionsRadio
 };
 
 export { widgets };

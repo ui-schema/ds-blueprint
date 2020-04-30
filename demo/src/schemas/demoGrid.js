@@ -16,16 +16,19 @@ const schemaGrid = columns => createOrderedMap({
             }
         },
         tree_2b: {
-            type: 'string',
+            type: 'boolean',
             view: {
                 sizeXs: columns / 2,
             }
         },
         tree_3a: {
             type: 'string',
+            widget: 'OptionsRadio',
             view: {
                 sizeXs: columns / 3,
-            }
+            },
+            enum: ['left', 'center', 'right'],
+            default: 'center'
         },
         tree_3b: {
             type: 'string',
