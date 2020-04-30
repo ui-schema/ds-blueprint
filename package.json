@@ -40,10 +40,11 @@
     },
     "devDependencies": {
         "@blueprintjs/core": "^3.24.0",
+        "@material-ui/core": "^4.9.12",
         "@ui-schema/ui-schema": "0.0.19",
         "flexboxgrid": "^6.3.1",
         "immutable": "^4.0.0-rc.12",
-        "nwb": "0.23.x",
+        "nwb": "0.23.x || 0.24.x",
         "react": "^16.12",
         "react-dom": "^16.12"
     },
@@ -52,6 +53,7 @@
     },
     "peerDependencies": {
         "@blueprintjs/core": "^3.0.0",
+        "@material-ui/core": "^4.0.0",
         "@ui-schema/ui-schema": "0.0.x",
         "react": "^16.8",
         "react-dom": "^16.12"

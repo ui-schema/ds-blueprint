@@ -1,9 +1,15 @@
-import {widgetsBase} from "./widgetsBase";
+import { widgetsBase } from "./widgetsBase";
+import { NumberRenderer, StringRenderer, TextRenderer } from "./Widgets/TextField";
 
-const widgets = {...widgetsBase};
+const widgets = { ...widgetsBase };
 
-widgets.types = {};
+widgets.types = {
+    string: StringRenderer,
+    number: NumberRenderer
+};
 
-widgets.custom = {};
+widgets.custom = {
+    Text: TextRenderer
+};
 
-export {widgets};
+export { widgets };

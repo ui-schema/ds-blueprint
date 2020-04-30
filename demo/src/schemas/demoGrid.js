@@ -10,7 +10,7 @@ const schemaGrid = columns => createOrderedMap({
             }
         },
         tree_2a: {
-            type: 'string',
+            type: 'number',
             view: {
                 sizeXs: columns / 2,
             }
