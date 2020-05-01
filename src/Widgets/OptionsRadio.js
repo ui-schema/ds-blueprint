@@ -2,9 +2,7 @@ import React from "react";
 import { Map, List } from "immutable";
 import { RadioGroup, Radio } from "@blueprintjs/core";
 import { TransTitle, Trans, beautifyKey, updateValue, } from "@ui-schema/ui-schema";
-import { ValidityHelperText } from "../Component/LocaleHelperText";
 import { useUID } from "react-uid";
-//import '@blueprintjs/core/lib/css/blueprint.css';
 
 const OptionsRadio = ({
     ownKey,
@@ -18,8 +16,6 @@ const OptionsRadio = ({
     errors,
     row
 }) => {
-    console.log('render')
-
     const enumVal = schema.get('enum');
     if (!enumVal) return null;
 
@@ -29,7 +25,7 @@ const OptionsRadio = ({
         <RadioGroup
             label={<TransTitle schema={schema} storeKeys={storeKeys} ownKey={ownKey} />}
             selectedValue={selectedValue}
-            onChange={(e) => { console.log(e.currentTarget.value); updateValue(storeKeys, e.currentTarget.value); } }
+            onChange={(e) => onChange(updateValue(storeKeys, e.currentTarget.value))}
             inline={true}
         >
             {enumVal ? enumVal.map((enum_name) => {

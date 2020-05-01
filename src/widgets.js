@@ -2,6 +2,8 @@ import { widgetsBase } from "./widgetsBase";
 import { NumberRenderer, StringRenderer, TextRenderer } from "./Widgets/TextField";
 import { BoolRenderer } from "./Widgets/OptionsBoolean";
 import { OptionsRadio } from "./Widgets/OptionsRadio";
+import { OptionsCheck } from "./Widgets/OptionsCheck";
+import { Select, SelectMulti } from "./Widgets/Select";
 
 const widgets = { ...widgetsBase };
 
@@ -13,7 +15,10 @@ widgets.types = {
 
 widgets.custom = {
     Text: TextRenderer,
-    OptionsRadio
+    OptionsRadio,
+    OptionsCheck,
+    Select,
+    SelectMulti
 };
 
 export { widgets };

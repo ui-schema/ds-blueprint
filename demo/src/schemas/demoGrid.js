@@ -1,4 +1,4 @@
-import {createOrderedMap} from "@ui-schema/ui-schema";
+import { createOrderedMap } from "@ui-schema/ui-schema";
 
 const schemaGrid = columns => createOrderedMap({
     type: 'object',
@@ -32,9 +32,11 @@ const schemaGrid = columns => createOrderedMap({
         },
         tree_3b: {
             type: 'string',
+            widget: 'OptionsCheck',
             view: {
                 sizeXs: columns / 3,
-            }
+            },
+            enum: ['check1', 'check2', 'check3'],
         },
         tree_3c: {
             type: 'string',
@@ -44,15 +46,35 @@ const schemaGrid = columns => createOrderedMap({
         },
         tree_4a: {
             type: 'string',
+            widget: 'Select',
             view: {
                 sizeXs: columns / 4,
-            }
+            },
+            enum: [
+                "sidebar_left",
+                "sidebar_right",
+                "notice",
+                "content",
+                "footer"
+            ],
+            default: 'notice'
         },
         tree_4b: {
             type: 'string',
+            widget: 'SelectMulti',
             view: {
                 sizeXs: columns / 4,
-            }
+            },
+            enum: [
+                "sidebar_left",
+                "sidebar_right",
+                "notice",
+                "content",
+                "footer"
+            ],
+            default: [
+                'notice'
+            ]
         },
         tree_4c: {
             type: 'string',
@@ -197,4 +219,4 @@ const schemaGrid = columns => createOrderedMap({
     }
 });
 
-export {schemaGrid}
+export { schemaGrid }
