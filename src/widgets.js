@@ -4,6 +4,7 @@ import { BoolRenderer } from "./Widgets/OptionsBoolean";
 import { OptionsRadio } from "./Widgets/OptionsRadio";
 import { OptionsCheck } from "./Widgets/OptionsCheck";
 import { Select, SelectMulti } from "./Widgets/Select";
+import { NumberSlider } from "./Widgets/NumberSlider";
 
 const widgets = { ...widgetsBase };
 
@@ -18,7 +19,8 @@ widgets.custom = {
     OptionsRadio,
     OptionsCheck,
     Select,
-    SelectMulti
+    SelectMulti,
+    NumberSlider
 };
 
 export { widgets };
