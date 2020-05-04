@@ -1,8 +1,8 @@
 import React from "react";
 import { Map, List } from "immutable";
-import { MenuItem, Button, Intent } from "@blueprintjs/core";
+import { FormGroup, MenuItem, Button } from "@blueprintjs/core";
 import { Select, MultiSelect } from "@blueprintjs/select";
-import { Trans, beautifyKey, updateValue, extractValue, memo, useEditor } from "@ui-schema/ui-schema";
+import { TransTitle, Trans, beautifyKey, updateValue, extractValue, memo, useEditor } from "@ui-schema/ui-schema";
 
 const itemRenderer = (
     item,
@@ -119,31 +119,33 @@ const BaseSelect = ({
     />
 
     return (
-        <Renderer.Component
-            items={enum_val.toArray()}
-            itemRenderer={(item, props) => itemRenderer(item, translateItemName, currentValue, props)}
-            itemPredicate={itemPredicate}
-            onItemSelect={(value) =>
-                multiple ?
-                    onChange(addValuesMultiple(value, currentValue, storeKeys)) :
-                    onChange(updateValue(storeKeys, value))
-            }
-            filterable={true}
-            popoverProps={{
-                minimal: true
-            }}
-            {...Renderer.props}>
-            <Button
-                fill={true}
-                text={<Trans
-                    schema={schema.get('t')}
-                    text={storeKeys.insert(0, 'widget').concat(List(['enum', currentValue])).join('.')}
-                    context={Map({ 'relative': List(['enum', currentValue]) })}
-                    fallback={beautifyKey(currentValue)}
-                />}
-                rightIcon="caret-down"
-                disabled={false} />
-        </Renderer.Component>
+        <FormGroup label={<TransTitle schema={schema} storeKeys={storeKeys} ownKey={ownKey} />}>
+            <Renderer.Component
+                items={enum_val.toArray()}
+                itemRenderer={(item, props) => itemRenderer(item, translateItemName, currentValue, props)}
+                itemPredicate={itemPredicate}
+                onItemSelect={(value) =>
+                    multiple ?
+                        onChange(addValuesMultiple(value, currentValue, storeKeys)) :
+                        onChange(updateValue(storeKeys, value))
+                }
+                filterable={true}
+                popoverProps={{
+                    minimal: true
+                }}
+                {...Renderer.props}>
+                <Button
+                    fill={true}
+                    text={<Trans
+                        schema={schema.get('t')}
+                        text={storeKeys.insert(0, 'widget').concat(List(['enum', currentValue])).join('.')}
+                        context={Map({ 'relative': List(['enum', currentValue]) })}
+                        fallback={beautifyKey(currentValue)}
+                    />}
+                    rightIcon="caret-down"
+                    disabled={false} />
+            </Renderer.Component>
+        </FormGroup>
     );
 };
 
