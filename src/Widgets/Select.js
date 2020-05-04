@@ -94,13 +94,12 @@ const BaseSelect = ({
             tagInputProps: {
                 onRemove: (value) => onChange(removeValuesMultiple(value, currentValue, storeKeys)),
             },
-            //TODO: create custom tagRenderer
-            /*tagRenderer: (item) => <Trans
+            tagRenderer: (item) => <Trans
                 schema={schema.get('t')}
                 text={storeKeys.insert(0, 'widget').concat(List(['enum', item])).join('.')}
                 context={Map({ 'relative': List(['enum', item]) })}
                 fallback={beautifyKey(item)}
-            />*/
+            />
         }
     } else {
         currentValue = typeof value !== 'undefined' ? value : (schema.get('default') || '');
