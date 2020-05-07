@@ -35,6 +35,7 @@ const withBaseRenderer = RendererComponent => {
 
         const format = schema.get('format');
         const currentRef = inputRef.current;
+        const readOnly = schema.get('readOnly') === true
 
         inputProps = mapSchema(inputProps, schema);
         valid = checkNativeValidity(currentRef, valid);
@@ -55,6 +56,7 @@ const withBaseRenderer = RendererComponent => {
                     onChange={(value) => trace("textfield onchange", performance.now(), () => {
                         onChange(updateValue(storeKeys, value));
                     })}
+                    disabled={readOnly}
                 />
             </FormGroup>
         );

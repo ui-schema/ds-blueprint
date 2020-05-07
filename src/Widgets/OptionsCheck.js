@@ -4,7 +4,7 @@ import { Map, List } from "immutable";
 import { TransTitle, Trans, beautifyKey, extractValue, memo, updateValue, } from "@ui-schema/ui-schema";
 import { useUID } from "react-uid";
 
-const OptionCheck = ({ currentValue, label, onChange }) => {
+const OptionCheck = ({ currentValue, label, onChange, readOnly }) => {
     const uid = useUID();
 
     return (
@@ -13,16 +13,18 @@ const OptionCheck = ({ currentValue, label, onChange }) => {
             label={label}
             checked={currentValue}
             onChange={onChange}
-            inline={true} />
+            inline={true}
+            disabled={readOnly} />
     );
 };
 
-const OptionsCheckValue = extractValue(memo(({ enumVal, storeKeys, value, onChange, trans }) => enumVal ?
+const OptionsCheckValue = extractValue(memo(({ enumVal, storeKeys, value, onChange, trans, readOnly }) => enumVal ?
     enumVal.map((enum_name) => {
         const isActive = value && value.contains && typeof value.contains(enum_name) !== 'undefined' ? value.contains(enum_name) : false;
         const relativeT = List(['enum', enum_name]);
 
         return <OptionCheck
+            readOnly={readOnly}
             key={enum_name}
             currentValue={isActive}
             onChange={() => {
@@ -58,12 +60,13 @@ const OptionsCheck = ({
 }) => {
     const enumVal = schema.get('enum');
     if (!enumVal) return null;
+    const readOnly = schema.get('readOnly') === true
 
     return (
         <FormGroup
             label={<TransTitle schema={schema} storeKeys={storeKeys} ownKey={ownKey} />}
         >
-            <OptionsCheckValue enumVal={enumVal} storeKeys={storeKeys} trans={schema.get('t')} />
+            <OptionsCheckValue enumVal={enumVal} storeKeys={storeKeys} trans={schema.get('t')} readOnly={readOnly} />
         </FormGroup>
     );
 };

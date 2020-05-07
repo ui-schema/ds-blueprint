@@ -9,6 +9,13 @@ const schemaGrid = columns => createOrderedMap({
                 sizeXs: columns,
             }
         },
+        TextField_readOnly: {
+            type: 'string',
+            readOnly: true,
+            view: {
+                sizeXs: columns,
+            }
+        },
         Text: {
             type: 'string',
             widget: 'Text',
@@ -103,6 +110,22 @@ const schemaGrid = columns => createOrderedMap({
             },
             view: {
                 sizeXs: columns / 2,
+            }
+        },
+        NumberSlider_Array_Readonly: {
+            type: 'array',
+            readOnly: true,
+            widget: 'NumberSlider',
+            default: [2, 6],
+            items:
+            {
+                type: 'number',
+                minimum: 1,
+                maximum: 10,
+                multipleOf: 1
+            },
+            view: {
+                sizeXs: columns,
             }
         }
     }

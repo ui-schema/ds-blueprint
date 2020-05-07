@@ -84,6 +84,8 @@ const BaseSelect = ({
     const enum_val = schema.get('enum');
     if (!enum_val) return null;
 
+    const readOnly = schema.get('readOnly') === true
+
     let currentValue = undefined;
     if (multiple) {
         currentValue = typeof value !== 'undefined' ? value : (List(schema.get('default')) || List());
@@ -93,6 +95,7 @@ const BaseSelect = ({
             selectedItems: currentValue.toArray(),
             tagInputProps: {
                 onRemove: (value) => onChange(removeValuesMultiple(value, currentValue, storeKeys)),
+                disabled: readOnly
             },
             tagRenderer: (item) => <Trans
                 schema={schema.get('t')}
@@ -120,6 +123,7 @@ const BaseSelect = ({
     return (
         <FormGroup label={<TransTitle schema={schema} storeKeys={storeKeys} ownKey={ownKey} />}>
             <Renderer.Component
+                disabled={readOnly}
                 items={enum_val.toArray()}
                 itemRenderer={(item, props) => itemRenderer(item, translateItemName, currentValue, props)}
                 itemPredicate={itemPredicate}
@@ -134,6 +138,7 @@ const BaseSelect = ({
                 }}
                 {...Renderer.props}>
                 <Button
+                    disabled={readOnly}
                     fill={true}
                     text={<Trans
                         schema={schema.get('t')}
@@ -141,8 +146,7 @@ const BaseSelect = ({
                         context={Map({ 'relative': List(['enum', currentValue]) })}
                         fallback={beautifyKey(currentValue)}
                     />}
-                    rightIcon="caret-down"
-                    disabled={false} />
+                    rightIcon="caret-down" />
             </Renderer.Component>
         </FormGroup>
     );

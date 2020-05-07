@@ -20,6 +20,7 @@ const OptionsRadio = ({
     if (!enumVal) return null;
 
     const selectedValue = typeof value !== 'undefined' ? value : (schema.get('default') || '');
+    const readOnly = schema.get('readOnly') === true
 
     return (
         <RadioGroup
@@ -27,6 +28,7 @@ const OptionsRadio = ({
             selectedValue={selectedValue}
             onChange={(e) => onChange(updateValue(storeKeys, e.currentTarget.value))}
             inline={true}
+            disabled={readOnly}
         >
             {enumVal ? enumVal.map((enum_name) => {
                 const uid = useUID();

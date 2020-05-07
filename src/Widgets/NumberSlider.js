@@ -50,6 +50,7 @@ const BaseSlider = ({
     }
 
     const Component = schema.get('type') === 'array' ? RangeSlider : Slider;
+    const readOnly = schema.get('readOnly') === true
 
     return (
         <Component
@@ -71,6 +72,7 @@ const BaseSlider = ({
                     onChange(updateValue(storeKeys, value * 1));
                 }
             })}
+            disabled={readOnly}
         />
     );
 };
