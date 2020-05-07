@@ -1,51 +1,46 @@
 import React from "react";
-import {NextPluginRenderer} from "@ui-schema/ui-schema";
+import { Grid } from "@material-ui/core";
+import { NextPluginRenderer } from "@ui-schema/ui-schema";
 
-const SchemaGridItem = ({schema, children, defaultMd}) => {
+const SchemaGridItem = ({ schema, children, defaultMd }) => {
     const view = schema ? schema.get('view') : undefined;
 
     const viewXs = view ? (view.get('sizeXs') || 12) : 12;
     const viewSm = view ? view.get('sizeSm') : undefined;
     const viewMd = view ? view.get('sizeMd') : defaultMd;
     const viewLg = view ? view.get('sizeLg') : undefined;
+    const viewXl = view ? view.get('sizeXl') : undefined;
 
-    let gridClasses = [];
-    if(viewXs) {
-        gridClasses.push('col-xs-' + viewXs);
-    }
-    if(viewSm) {
-        gridClasses.push('col-sm-' + viewSm);
-    }
-    if(viewMd) {
-        gridClasses.push('col-md-' + viewMd);
-    }
-    if(viewLg) {
-        gridClasses.push('col-lg-' + viewLg);
-    }
-
-    return <div className={gridClasses.join(' ')}>
+    return <Grid
+        item
+        xs={viewXs}
+        sm={viewSm}
+        md={viewMd}
+        lg={viewLg}
+        xl={viewXl}
+    >
         {children}
-    </div>
+    </Grid>
 };
 
-const RootRenderer = props => <React.Fragment>{props.children}</React.Fragment>;
+const RootRenderer = props => <Grid container spacing={0}>{props.children}</Grid>;
 
-const GroupRenderer = ({/*schema,*/ children}) => <div className={'row'}>
+const GroupRenderer = ({ schema, children }) => <Grid container spacing={schema.getIn(['view', 'spacing']) || 2} wrap={'wrap'}>
     {children}
-</div>;
+</Grid>;
 
 const SchemaGridHandler = (props) => {
     const {
         schema, noGrid
     } = props;
 
-    if(noGrid) {
-        return <NextPluginRenderer {...props}/>;
+    if (noGrid) {
+        return <NextPluginRenderer {...props} />;
     }
 
     return <SchemaGridItem schema={schema}>
-        <NextPluginRenderer {...props}/>
+        <NextPluginRenderer {...props} />
     </SchemaGridItem>;
 };
 
-export {SchemaGridHandler, SchemaGridItem, RootRenderer, GroupRenderer};
+export { SchemaGridHandler, SchemaGridItem, RootRenderer, GroupRenderer };
