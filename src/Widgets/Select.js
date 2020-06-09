@@ -2,15 +2,21 @@ import React from "react";
 import { Map, List } from "immutable";
 import { FormGroup, MenuItem, Button } from "@blueprintjs/core";
 import { Select, MultiSelect } from "@blueprintjs/select";
-import { TransTitle, Trans, beautifyKey, updateValue, extractValue, memo, useEditor } from "@ui-schema/ui-schema";
+import { TransTitle, Trans, beautifyKey, updateValue, extractValue, memo } from "@ui-schema/ui-schema";
 
 const itemRenderer = (
+    multiple,
     item,
     translateItemName,
     currentValue,
     { handleClick, modifiers }
 ) => {
-    const selected = currentValue.includes(item)
+    var selected
+    if (multiple) {
+        selected = currentValue.includes(item)
+    } else {
+        selected = currentValue === item
+    }
 
     return (
         <MenuItem
@@ -71,14 +77,8 @@ const BaseSelect = ({
     ownKey,
     schema,
     value,
-    onChange,
-    showValidity,
-    valid,
-    required,
-    errors
+    onChange
 }) => {
-    const { t } = useEditor();
-
     if (!schema) return null;
 
     const enum_val = schema.get('enum');
@@ -125,7 +125,7 @@ const BaseSelect = ({
             <Renderer.Component
                 disabled={readOnly}
                 items={enum_val.toArray()}
-                itemRenderer={(item, props) => itemRenderer(item, translateItemName, currentValue, props)}
+                itemRenderer={(item, props) => itemRenderer(multiple, item, translateItemName, currentValue, props)}
                 itemPredicate={itemPredicate}
                 onItemSelect={(value) =>
                     multiple ?
