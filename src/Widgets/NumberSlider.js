@@ -7,7 +7,6 @@ import { List } from "immutable";
 const BaseSlider = ({
     schema,
     storeKeys,
-    ownKey,
     onChange,
     value
 }) => {
@@ -17,7 +16,7 @@ const BaseSlider = ({
     let defaultVal = min;
     let multipleOf = undefined;
     let minItems = undefined;
-    let maxItems = undefined;
+    //let maxItems = undefined;
     let isArray = false
     if (schema.get('type') === 'array') {
         isArray = true
@@ -32,7 +31,7 @@ const BaseSlider = ({
         multipleOf = schema.getIn(['items', 'multipleOf']);
 
         minItems = schema.get('minItems');
-        maxItems = schema.get('maxItems');
+        //maxItems = schema.get('maxItems');
         if (minItems < 2 || !minItems) {
             minItems = 2;
         }

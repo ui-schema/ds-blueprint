@@ -51,12 +51,7 @@ const OptionsCheckValue = extractValue(memo(({ enumVal, storeKeys, value, onChan
 const OptionsCheck = ({
     ownKey,
     schema,
-    storeKeys,
-    showValidity,
-    valid,
-    required,
-    errors,
-    row
+    storeKeys
 }) => {
     const enumVal = schema.get('enum');
     if (!enumVal) return null;

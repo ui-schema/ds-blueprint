@@ -88,7 +88,7 @@ const schemaGrid = columns => createOrderedMap({
                 sizeXs: columns / 2,
             },
             enum: [
-                "sidebar_left",
+                1,
                 "sidebar_right",
                 "notice",
                 "content",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import { NextPluginRenderer } from "@ui-schema/ui-schema";
-import { Card, Elevation } from "@blueprintjs/core";
+import { Card } from "@blueprintjs/core";
 
 const SchemaGridItem = ({ schema, children, defaultMd }) => {
     const view = schema ? schema.get('view') : undefined;

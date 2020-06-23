@@ -1,4 +1,3 @@
-import React from "react";
 import {
     t, createMap,
     ERROR_CONST_MISMATCH, ERROR_DUPLICATE_ITEMS, ERROR_ENUM_MISMATCH,
@@ -23,12 +22,11 @@ const dicEN = createMap({
         [ERROR_WRONG_TYPE]: (context) => `Wrong type, expected ${context.get('type')} and got ${context.get('actual')}`,
     },
     widget: {
-        stepper: {
-            "step-1": {
-                email: {title: "Email"},
-                date: {title: "Date"},
+        Select: {
+            enum: {
+                1: "test"
             }
-        },
+        }
     },
     titles: {
         'simple-number': 'Simple Number'
@@ -78,7 +76,7 @@ const tDE = t(dicDE, 'de');
 
 const browserT = (text, context, schema) => {
     const locale = window.localStorage.getItem('locale') || navigator.language;
-
+    console.log(text)
     return locale === 'de' ? tDE(text, context, schema) : tEN(text, context, schema);
 };
 

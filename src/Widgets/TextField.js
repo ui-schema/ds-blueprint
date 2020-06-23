@@ -2,42 +2,28 @@ import React from "react";
 import { FormGroup, InputGroup, NumericInput, TextArea } from "@blueprintjs/core";
 import { useUID } from "react-uid";
 import { unstable_trace as trace } from "scheduler/tracing";
-import { TransTitle, updateValue, updateValidity, mapSchema, checkNativeValidity, getDisplayName } from "@ui-schema/ui-schema";
+import { TransTitle, updateValue, updateValidity, checkNativeValidity, getDisplayName } from "@ui-schema/ui-schema";
 
 const withBaseRenderer = RendererComponent => {
     const WithBaseRenderer = ({
-        type,
-        multiline,
-        rows,
-        rowsMax,
         storeKeys,
         ownKey,
         schema,
         value,
         onChange,
-        showValidity,
         valid,
-        errors,
-        required,
-        style,
-        onClick,
-        onFocus,
-        onBlur,
-        onKeyUp,
-        onKeyDown,
-        inputProps = {},
-        InputProps = {},
+        //inputProps = {},
         inputRef: customInputRef
     }) => {
         const uid = useUID();
         // todo: this could break law-of-hooks
         const inputRef = customInputRef || React.useRef();
 
-        const format = schema.get('format');
+        //const format = schema.get('format');
         const currentRef = inputRef.current;
         const readOnly = schema.get('readOnly') === true
 
-        inputProps = mapSchema(inputProps, schema);
+        //inputProps = mapSchema(inputProps, schema);
         valid = checkNativeValidity(currentRef, valid);
 
         React.useEffect(() => {
@@ -66,7 +52,7 @@ const withBaseRenderer = RendererComponent => {
     return WithBaseRenderer
 };
 
-const StringRenderer = withBaseRenderer(({ schema, ...props }) => {
+const StringRenderer = withBaseRenderer(({ ...props }) => {
     const { onChange } = props
     return (
         <InputGroup
@@ -76,7 +62,7 @@ const StringRenderer = withBaseRenderer(({ schema, ...props }) => {
     )
 })
 
-const TextRenderer = withBaseRenderer(({ schema, ...props }) => {
+const TextRenderer = withBaseRenderer(({ ...props }) => {
     const { onChange } = props
     return (
         <TextArea
@@ -88,7 +74,7 @@ const TextRenderer = withBaseRenderer(({ schema, ...props }) => {
     )
 })
 
-const NumberRenderer = withBaseRenderer(({ schema, ...props }) => {
+const NumberRenderer = withBaseRenderer(({ ...props }) => {
     const { onChange } = props
     return (
         <NumericInput

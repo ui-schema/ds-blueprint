@@ -1,7 +1,7 @@
 import React from 'react';
-import {schemaGrid} from "./schemas/demoGrid";
+import {demoSchema} from "./schemas/demoSchema";
 import {widgets,} from "../../src";
-import {SchemaEditor, isInvalid, createOrderedMap, createStore} from "@ui-schema/ui-schema";
+import {SchemaEditor, createOrderedMap, createStore} from "@ui-schema/ui-schema";
 import {browserT} from "./t";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "flexboxgrid/dist/flexboxgrid.css";
@@ -22,9 +22,9 @@ import "flexboxgrid/dist/flexboxgrid.css";
 
 
 const MainStore = () => {
-    const [showValidity, setShowValidity] = React.useState(false);
+    const [showValidity] = React.useState(false);
     const [store, setStore] = React.useState(() => createStore(createOrderedMap({})));
-    const [schema/*, setSchema*/] = React.useState(schemaGrid(12));
+    const [schema/*, setSchema*/] = React.useState(demoSchema(12));
 
     return <React.Fragment>
         <SchemaEditor
@@ -36,8 +36,8 @@ const MainStore = () => {
             t={browserT}
         />
 
-        <button onClick={() => setShowValidity(!showValidity)}>validity</button>
-        {isInvalid(store.getValidity()) ? 'invalid' : 'valid'}
+        {/*<button onClick={() => setShowValidity(!showValidity)}>validity</button>
+        {isInvalid(store.getValidity()) ? 'invalid' : 'valid'}*/}
 
     </React.Fragment>
 };

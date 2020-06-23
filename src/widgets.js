@@ -5,6 +5,7 @@ import { OptionsRadio } from "./Widgets/OptionsRadio";
 import { OptionsCheck } from "./Widgets/OptionsCheck";
 import { Select, SelectMulti } from "./Widgets/Select";
 import { NumberSlider } from "./Widgets/NumberSlider";
+import { DatePicker } from "./Widgets/Date";
 
 const widgets = { ...widgetsBase };
 
@@ -20,7 +21,8 @@ widgets.custom = {
     OptionsCheck,
     Select,
     SelectMulti,
-    NumberSlider
+    NumberSlider,
+    Date: DatePicker
 };
 
 export { widgets };
