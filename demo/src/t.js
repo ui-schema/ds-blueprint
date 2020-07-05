@@ -76,7 +76,6 @@ const tDE = t(dicDE, 'de');
 
 const browserT = (text, context, schema) => {
     const locale = window.localStorage.getItem('locale') || navigator.language;
-    console.log(text)
     return locale === 'de' ? tDE(text, context, schema) : tEN(text, context, schema);
 };
 
