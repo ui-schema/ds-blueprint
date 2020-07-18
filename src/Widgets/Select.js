@@ -2,15 +2,21 @@ import React from "react";
 import { Map, List } from "immutable";
 import { FormGroup, MenuItem, Button } from "@blueprintjs/core";
 import { Select, MultiSelect } from "@blueprintjs/select";
-import { TransTitle, Trans, beautifyKey, updateValue, extractValue, memo, useEditor } from "@ui-schema/ui-schema";
+import { TransTitle, Trans, beautifyKey, updateValue, extractValue, memo } from "@ui-schema/ui-schema";
 
 const itemRenderer = (
+    multiple,
     item,
     translateItemName,
     currentValue,
     { handleClick, modifiers }
 ) => {
-    const selected = currentValue.includes(item)
+    var selected
+    if (multiple) {
+        selected = currentValue.includes(item)
+    } else {
+        selected = currentValue === item
+    }
 
     return (
         <MenuItem
@@ -27,9 +33,15 @@ const itemRenderer = (
 
 const itemPredicate = (
     query,
-    item
+    item,
+    translateItemNameRaw
 ) => {
-    return item.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+    var trans = translateItemNameRaw(item)
+    var value
+
+    trans? value = trans: value = item
+
+    return String(value).toLowerCase().indexOf(query.toLowerCase()) >= 0;
 }
 
 const addValuesMultiple = (
@@ -72,13 +84,8 @@ const BaseSelect = ({
     schema,
     value,
     onChange,
-    showValidity,
-    valid,
-    required,
-    errors
+    t
 }) => {
-    const { t } = useEditor();
-
     if (!schema) return null;
 
     const enum_val = schema.get('enum');
@@ -120,13 +127,20 @@ const BaseSelect = ({
         fallback={beautifyKey(enum_name)}
     />
 
+    const translateItemNameRaw = (enum_name) => {
+        let text = storeKeys.insert(0, 'widget').concat(List(['enum', enum_name])).join('.')
+        let context = Map({ 'relative': List(['enum', enum_name]) })
+
+        return t(text, context, schema)
+    }
+
     return (
         <FormGroup label={<TransTitle schema={schema} storeKeys={storeKeys} ownKey={ownKey} />}>
             <Renderer.Component
                 disabled={readOnly}
                 items={enum_val.toArray()}
-                itemRenderer={(item, props) => itemRenderer(item, translateItemName, currentValue, props)}
-                itemPredicate={itemPredicate}
+                itemRenderer={(item, props) => itemRenderer(multiple, item, translateItemName, currentValue, props)}
+                itemPredicate={(query, item) => itemPredicate(query, item, translateItemNameRaw)}
                 onItemSelect={(value) =>
                     multiple ?
                         onChange(addValuesMultiple(value, currentValue, storeKeys)) :
@@ -140,12 +154,12 @@ const BaseSelect = ({
                 <Button
                     disabled={readOnly}
                     fill={true}
-                    text={<Trans
+                    text={currentValue? <Trans
                         schema={schema.get('t')}
                         text={storeKeys.insert(0, 'widget').concat(List(['enum', currentValue])).join('.')}
                         context={Map({ 'relative': List(['enum', currentValue]) })}
                         fallback={beautifyKey(currentValue)}
-                    />}
+                    />: ""}
                     rightIcon="caret-down" />
             </Renderer.Component>
         </FormGroup>

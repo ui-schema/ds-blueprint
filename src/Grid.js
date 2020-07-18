@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import { NextPluginRenderer } from "@ui-schema/ui-schema";
+import { Card } from "@blueprintjs/core";
 
 const SchemaGridItem = ({ schema, children, defaultMd }) => {
     const view = schema ? schema.get('view') : undefined;
@@ -25,9 +26,17 @@ const SchemaGridItem = ({ schema, children, defaultMd }) => {
 
 const RootRenderer = props => <Grid container spacing={0}>{props.children}</Grid>;
 
-const GroupRenderer = ({ schema, children }) => <Grid container spacing={schema.getIn(['view', 'spacing']) || 2} wrap={'wrap'}>
-    {children}
-</Grid>;
+const GroupRenderer = ({ schema, children, level }) =>
+    <Grid container spacing={schema.getIn(['view', 'spacing']) || 2} wrap={'wrap'}>
+    {
+        level > 0?
+            <Card style={{ width: '100%', margin: '10px', padding: '10px 10px 0 10px'}}>
+                {schema.get('title')? <label style={{ display: 'block', margin: '0 0 10px 0', fontWeight: 'bold' }}>{schema.get('title')}</label>:null}
+                {children}
+            </Card>
+        : children
+    }
+    </Grid>;
 
 const SchemaGridHandler = (props) => {
     const {
@@ -38,9 +47,11 @@ const SchemaGridHandler = (props) => {
         return <NextPluginRenderer {...props} />;
     }
 
-    return <SchemaGridItem schema={schema}>
-        <NextPluginRenderer {...props} />
-    </SchemaGridItem>;
-};
+    return (
+        <SchemaGridItem schema={schema}>
+            <NextPluginRenderer {...props} />
+        </SchemaGridItem>
+    );
+}
 
 export { SchemaGridHandler, SchemaGridItem, RootRenderer, GroupRenderer };

@@ -9,12 +9,7 @@ const OptionsRadio = ({
     schema,
     value,
     onChange,
-    storeKeys,
-    showValidity,
-    valid,
-    required,
-    errors,
-    row
+    storeKeys
 }) => {
     const enumVal = schema.get('enum');
     if (!enumVal) return null;

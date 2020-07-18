@@ -54,6 +54,18 @@ const schemaGrid = columns => createOrderedMap({
             },
             enum: ['check1', 'check2', 'check3'],
         },
+        Object: {
+            type: 'object',
+            title: 'Inner-Object',
+            properties: {
+                TextField: {
+                    type: 'string',
+                    view: {
+                        sizeXs: columns,
+                    }
+                }
+            }
+        },
         Select: {
             type: 'string',
             widget: 'Select',
@@ -76,7 +88,7 @@ const schemaGrid = columns => createOrderedMap({
                 sizeXs: columns / 2,
             },
             enum: [
-                "sidebar_left",
+                1,
                 "sidebar_right",
                 "notice",
                 "content",
@@ -127,7 +139,55 @@ const schemaGrid = columns => createOrderedMap({
             view: {
                 sizeXs: columns,
             }
-        }
+        },
+        date: {
+            type: 'string',
+            format: 'date',
+            widget: 'Date',
+            date: {
+                format: 'yy-MM-DD',
+                variant: 'inline',
+                clearable: true,
+            },
+            view: {
+                sizeXs: 4
+            }
+        },
+        Time: {
+            type: 'string',
+            format: 'time',
+            widget: 'Time',
+            date: {
+                variant: 'static',
+                formatData: 'HH:mm',
+                openTo: 'year',
+                keyboard: false,
+                autoOk: true,
+                minDate: '10:20',
+                maxDate: '20:20',
+            },
+            view: {
+                sizeXs: 4
+            }
+        },
+        DateTime: {
+            type: 'string',
+            format: 'date+time',
+            widget: 'DateTime',
+            date: {
+                variant: 'static',
+                formatData: 'yyyy-MM-dd HH',
+                views: ['year', 'month', 'date', 'hours'],
+                openTo: 'year',
+                keyboard: false,
+                autoOk: true,
+                minDate: '2018',
+                maxDate: '2023',
+            },
+            view: {
+                sizeXs: 4
+            }
+        },
     }
 });
 
